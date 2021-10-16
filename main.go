@@ -1,6 +1,7 @@
 package main
 
 import (
+	"demo/blog/config"
 	"demo/blog/routers"
 	"net/http"
 
@@ -11,5 +12,6 @@ func main() {
 	r := gin.New()
 	routers.InitRoutes(r)
 
-	http.ListenAndServe(":8080", r)
+	listenPort := config.GetConfig().GetString("listen")
+	http.ListenAndServe(listenPort, r)
 }
